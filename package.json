@@ -1,0 +1,26 @@
+{
+  "name": "http-api-assignment",
+  "version": "1.0.0",
+  "description": "simple HTTP API complete with status codes, accept headers, and xml or json responses",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "pretest": "eslint ./src --fix",
+    "test": "echo \"Tests Complete\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CarterIrish/http-api-assignment.git"
+  },
+  "author": "Carter Irish",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CarterIrish/http-api-assignment/issues"
+  },
+  "homepage": "https://github.com/CarterIrish/http-api-assignment#readme",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.0.0",
+    "globals": "^17.3.0"
+  }
+}

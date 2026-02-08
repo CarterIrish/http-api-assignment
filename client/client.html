@@ -1,13 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>Our simple HTTP server</title>
   <link rel="stylesheet" type="text/css" href="/style.css">
-  
-  <script>
 
+  <script>
+    const sendRequest = async () => {
+      const url = document.querySelector('#page').value;
+      const acceptType = document.querySelector('#type').value;
+      const content = document.querySelector('#content');
+
+      const response = await fetch(url, { headers: { 'Accept': acceptType } });
+
+      if (acceptType === 'text/xml') {
+        const text = await response.text();
+        content.textContent = text;
+      }
+      else{
+        const json = await response.json();
+        content.textContent = JSON.stringify(json);
+      }
+    }
+
+    window.onload = () => 
+    {
+      document.querySelector('#send').addEventListener('click', sendRequest);
+    }
   </script>
 </head>
+
 <body>
   <section id="top">
     <h3>Status Code Tests</h3>
@@ -29,4 +51,5 @@
   <section id="content">
   </section>
 </body>
+
 </html>
