@@ -1,3 +1,9 @@
+/**
+ * Author: Carter Irish
+ * Purpose: API response handlers that return JSON or XML based on the Accept header.
+ */
+
+// Frozen object mapping response names to their HTTP status codes.
 const RESPONSE_CODES =
 {
     success: 200,
@@ -11,6 +17,11 @@ const RESPONSE_CODES =
 
 Object.freeze(RESPONSE_CODES);
 
+/**
+ * Returns a 200 success response in JSON or XML based on the Accept header.
+ * @param {*} request
+ * @param {*} response
+ */
 const success = (request, response) => {
     const acceptedTypes = request.headers.accept;
     if (acceptedTypes.includes('text/xml')) {
@@ -29,6 +40,11 @@ const success = (request, response) => {
     }
 }
 
+/**
+ * Returns a 200 if ?valid=true is provided, otherwise returns a 400 bad request.
+ * @param {*} request
+ * @param {*} response
+ */
 const badRequest = (request, response) => {
     const acceptedTypes = request.headers.accept;
     const parsedURL = new URL(request.url, `http://${request.headers.host}`);
@@ -53,6 +69,11 @@ const badRequest = (request, response) => {
     }
 }
 
+/**
+ * Returns a 200 if ?loggedIn=yes is provided, otherwise returns a 401 unauthorized.
+ * @param {*} request
+ * @param {*} response
+ */
 const unauthorized = (request, response) => {
     const acceptedTypes = request.headers.accept;
     const parsedURL = new URL(request.url, `http://${request.headers.host}`);
@@ -80,6 +101,11 @@ const unauthorized = (request, response) => {
     }
 }
 
+/**
+ * Returns a 403 forbidden response indicating the user lacks access.
+ * @param {*} request
+ * @param {*} response
+ */
 const forbidden = (request, response) => {
     const acceptedTypes = request.headers.accept;
     if (acceptedTypes.includes('text/xml')) {
@@ -99,6 +125,11 @@ const forbidden = (request, response) => {
     }
 }
 
+/**
+ * Returns a 500 internal server error response.
+ * @param {*} request
+ * @param {*} response
+ */
 const internal = (request, response) => {
     const acceptedTypes = request.headers.accept;
     if (acceptedTypes.includes('text/xml')) {
@@ -118,6 +149,11 @@ const internal = (request, response) => {
     }
 }
 
+/**
+ * Returns a 501 not implemented response indicating the page is not yet available.
+ * @param {*} request
+ * @param {*} response
+ */
 const notImplemented = (request, response) => {
     const acceptedTypes = request.headers.accept;
     if (acceptedTypes.includes('text/xml')) {
@@ -138,6 +174,11 @@ const notImplemented = (request, response) => {
 }
 
 
+/**
+ * Returns a 404 not found response indicating the requested page does not exist.
+ * @param {*} request
+ * @param {*} response
+ */
 const notFound = (request, response) => {
     const acceptedTypes = request.headers.accept;
     if (acceptedTypes.includes('text/xml')) {
